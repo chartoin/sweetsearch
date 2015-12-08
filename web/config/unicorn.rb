@@ -1,5 +1,5 @@
 # Set the working application directory
-app_root "/ircsems/deployment/web"
+app_root="/ircsems/deployment/web"
 working_directory "#{app_root}"
 
 # Unicorn PID file location
