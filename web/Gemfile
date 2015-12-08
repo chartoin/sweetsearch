@@ -26,7 +26,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'sunspot_rails'
 gem 'sunspot_solr'
 gem 'blacklight'
+gem 'alchemy_api'
 gem 'alchemy-api-rb', :require => 'alchemy_api'
+gem 'typhoeus', '0.4.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -55,9 +55,9 @@ class CatalogController < ApplicationController
     # :show may be set to false if you don't want the facet to be drawn in the 
     # facet bar
     #config.add_facet_field 'format', :label => 'Format'
-    config.add_facet_field 'created_at', :label => 'Created at', :single => true,
+    config.add_facet_field 'created_at', :label => 'Created at', :single => false,
                            :date => { :format => :short }, blacklight_range_limit: 10
-    config.add_facet_field 'text', :label => 'Tweet'
+    config.add_facet_field 'text_en', :label => 'Tweet'
     #config.add_facet_field 'subject_geo_facet', :label => 'Region'
     #config.add_facet_field 'subject_era_facet', :label => 'Era'
 

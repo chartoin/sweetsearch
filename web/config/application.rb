@@ -23,6 +23,6 @@ module Ir
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
-    AlchemyAPI.key = "e6789797ef6096925f9a76a6bdbfb9d42475cdd7"
+    #AlchemyAPI.key = "e6789797ef6096925f9a76a6bdbfb9d42475cdd7"
   end
 end
