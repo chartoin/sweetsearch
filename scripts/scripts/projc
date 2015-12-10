@@ -11,9 +11,7 @@ PROJ_DATA_DIR=$PROJ_DIR/data
 PROJ_CONFIG_DIR=$PROJ_DIR/config
 PROJ_TMP_DIR=$PROJ_DIR/tmp
 
-DATA_FILE=$PROJ_DATA_DIR/train.json
-QUERIES_FILE=$PROJ_DATA_DIR/queries.txt
-RELEVANCE_FILE=$PROJ_DATA_DIR/qrel.txt
+DATA_FILE=$PROJ_DATA_DIR/normalized/tweets.json
 
 SOLR_URL=http://localhost:8983/solr
 SOLR_CORE_PREFIX=projc

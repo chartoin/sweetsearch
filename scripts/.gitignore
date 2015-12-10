@@ -2,3 +2,4 @@ bin/**
 data/**
 symlinks/**
 tmp/**
+scripts/pyscrape/__pycache__/**
