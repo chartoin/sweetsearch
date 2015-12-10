@@ -141,15 +141,15 @@
 	            <div class="input-group">
 	              <input type="text" name="q" class="form-control" placeholder="Search...">
 	              <span class="input-group-btn">
-	                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+	                <button type="button" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
 	              </span>
 	            </div>
 	          </form>
 	         </div>
           </div>
           
-          <div class="row">
-
+          <div id="searchContent">
+          	<div class="row">
             <!-- Who? -->
             <div class="col-md-4">
               <div class="box">
@@ -177,7 +177,7 @@
                         <img src="dist/img/user1-128x128.jpg" alt="Product Image">
                       </div>
                       <div class="product-info">
-                        <a href="javascript::;" class="product-title">Francois Hollande <span class="label label-success pull-right">3.3</span></a>
+                        <a href="javascript::;" class="product-title person-title">Francois Hollande <span class="label label-success pull-right">3.3</span></a>
                         <span class="product-description">
                           We are with you. #Paris
                         </span>
@@ -216,6 +216,39 @@
                         </span>
                       </div>
                     </li><!-- /.item -->
+                    <li class="item">
+                      <div class="product-img">
+                        <img src="dist/img/user1-128x128.jpg" alt="Product Image">
+                      </div>
+                      <div class="product-info">
+                        <a href="javascript::;" class="product-title person-title">Francois Hollande <span class="label label-success pull-right">3.3</span></a>
+                        <span class="product-description">
+                          We are with you. #Paris
+                        </span>
+                      </div>
+                    </li><!-- /.item -->
+                    <li class="item">
+                      <div class="product-img">
+                        <img src="dist/img/user8-128x128.jpg" alt="Product Image">
+                      </div>
+                      <div class="product-info">
+                        <a href="javascript::;" class="product-title">Jean Duchard <span class="label label-success pull-right">4.5</span></a>
+                        <span class="product-description">
+                          Stay Strong Paris, help is on the way.
+                        </span>
+                      </div>
+                    </li><!-- /.item -->
+                    <li class="item">
+                      <div class="product-img">
+                        <img src="dist/img/user3-128x128.jpg" alt="Product Image">
+                      </div>
+                      <div class="product-info">
+                        <a href="javascript::;" class="product-title">Rene Dosjae <span class="label label-success pull-right">2.5</span></a>
+                        <span class="product-description">
+                          Of all the places, it is my hometown.
+                        </span>
+                      </div>
+                    </li><!-- /.item -->
                   </ul>
                 </div><!-- /.box-body -->
                 <div class="box-footer text-center">
@@ -248,7 +281,7 @@
                   <ul class="products-list product-list-in-box">
                     <li class="item" style="height:71px">
                       <div>
-                        <a href="javascript::;" class="product-title">PorteOuverte<span class="label label-warning pull-right">1800</span></a>
+                        <a href="javascript::;" class="product-title topic-title">PorteOuverte<span class="label label-warning pull-right">1800</span></a>
                         <span class="product-description">
                           I have room for stranded people near chatelet. Tell me if you're in need, #PorteOuverte.
                         </span>
@@ -275,6 +308,30 @@
                         <a href="javascript::;" class="product-title">NousSommeUnis<span class="label label-warning pull-right">299</span></a>
                         <span class="product-description">
                           These are crimes against all of humanity. We stand together as humans. But tonight, we all Parisians. #NousSommeUnis
+                        </span>
+                      </div>
+                    </li><!-- /.item -->
+                    <li class="item" style="height:71px">
+                      <div>
+                        <a href="javascript::;" class="product-title topic-title">PorteOuverte<span class="label label-warning pull-right">1800</span></a>
+                        <span class="product-description">
+                          I have room for stranded people near chatelet. Tell me if you're in need, #PorteOuverte.
+                        </span>
+                      </div>
+                    </li><!-- /.item -->
+                    <li class="item" style="height:71px">
+                      <div>
+                        <a href="javascript::;" class="product-title">PrayForParis<span class="label label-warning pull-right">700</span></a>
+                        <span class="product-description">
+                          #PrayForParis No words today 
+                        </span>
+                      </div>
+                    </li><!-- /.item -->
+                    <li class="item" style="height:71px">
+                      <div>
+                        <a href="javascript::;" class="product-title"> ViveLaFrance <span class="label label-warning pull-right">350</span></a>
+                        <span class="product-description">
+                          After watching the terrible scenes in France unfold late last night, nothing seems enough to say, mais #jesuisParis et #ViveLaFrance
                         </span>
                       </div>
                     </li><!-- /.item -->
@@ -329,152 +386,160 @@
           	</div><!-- /.row -->
           </div>
           
-          <div class="row" > 
-          <div class="col-md-12">
-          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-			  <div class="panel panel-default">
-			    <div class="panel-heading" role="tab" id="headingOne">
-			      <h4 class="panel-title">
-			        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-			          Collapsible Group Item #1
-			        </a>
-			      </h4>
-			    </div>
-			    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-			      <div class="panel-body">
-			        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-			      </div>
-			    </div>
-			  </div>
-			  <div class="panel panel-default">
-			    <div class="panel-heading" role="tab" id="headingTwo">
-			      <h4 class="panel-title">
-			        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-			          Collapsible Group Item #2
-			        </a>
-			      </h4>
-			    </div>
-			    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-			      <div class="panel-body">
-			        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-			      </div>
-			    </div>
-			  </div>
-			  <div class="panel panel-default">
-			    <div class="panel-heading" role="tab" id="headingThree">
-			      <h4 class="panel-title">
-			        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-			          Collapsible Group Item #3
-			        </a>
-			      </h4>
-			    </div>
-			    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-			      <div class="panel-body">
-			        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-			      </div>
-			    </div>
-			  </div>
-			</div>
-			</div>
-			</div>
-          
           <!-- Main row -->
         
 		  <div class="row" >       
         	<div class="col-md-12">
               <!-- Info Boxes Style 2 -->
-              <div class="info-box bg-red">
-                <span class="info-box-icon"><i class="ion ion-social-twitter-outline"></i></span>
-                <div class="info-box-content">
-                  <span class="info-box-text">Popularity</span>
-                  <span class="info-box-number">114,381</span>
-                  <div class="progress">
-                    <div class="progress-bar" style="width: 70%"></div>
-                  </div>
-                  <span class="progress-description">
-                    70% Increase in 30 Days
-                  </span>
-                </div><!-- /.info-box-content -->
-              </div><!-- /.info-box -->
-              <div class="info-box bg-yellow">
-                <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
-                <div class="info-box-content">
-                  <span class="info-box-text">Hashtags</span>
-                  <span class="info-box-number">5,200</span>
-                  <div class="progress">
-                    <div class="progress-bar" style="width: 50%"></div>
-                  </div>
-                  <span class="progress-description">
-                    50% Increase in 30 Days
-                  </span>
-                </div><!-- /.info-box-content -->
-              </div><!-- /.info-box -->
-              <div class="info-box bg-green">
-                <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
-                <div class="info-box-content">
-                  <span class="info-box-text">Mentions</span>
-                  <span class="info-box-number">92,050</span>
-                  <div class="progress">
-                    <div class="progress-bar" style="width: 20%"></div>
-                  </div>
-                  <span class="progress-description">
-                    20% Increase in 30 Days
-                  </span>
-                </div><!-- /.info-box-content -->
-              </div><!-- /.info-box -->
-              <div class="info-box bg-aqua">
-                <span class="info-box-icon"><i class="ion-ios-chatbubble-outline"></i></span>
-                <div class="info-box-content">
-                  <span class="info-box-text">Direct Messages</span>
-                  <span class="info-box-number">163,921</span>
-                  <div class="progress">
-                    <div class="progress-bar" style="width: 40%"></div>
-                  </div>
-                  <span class="progress-description">
-                    40% Increase in 30 Days
-                  </span>
-                </div><!-- /.info-box-content -->
-              </div><!-- /.info-box -->
+                <div class="panel-group" id="accordion">
+                	<div class="panel panel-default" >
+		               <div class="panel-heading" style="padding:0px;">
+		                 	<h4 class="panel-title">
+		                      <a data-toggle="collapse" data-parent="#accordion" href="#popularity_collapse">
+				          		<div class="info-box bg-red" style="margin-bottom:0px;" >
+					                <span class="info-box-icon"><i class="ion ion-social-twitter-outline"></i></span>
+					                <div class="info-box-content">
+					                  <span class="info-box-text">Popularity</span>
+					                  <span class="info-box-number">114,381</span>
+					                  <div class="progress">
+					                    <div class="progress-bar" style="width: 70%"></div>
+					                  </div>
+					                  <span class="progress-description">
+					                    70% Increase in 30 Days
+					                  </span>
+					                </div><!-- /.info-box-content -->
+					              	</div><!-- /.info-box -->
+								</a>
+		            		</h4>
+		                </div>
+		                <div id="popularity_collapse" class="panel-collapse collapse in">
+		                  <div class="panel-body" style="margin-bottom:0px;">
+			                <div class="box-body">
+			                  <div class="row">
+			                    <div class="col-md-8">
+			                      <div class="chart-responsive">
+			                        <canvas id="pieChart" height="150"></canvas>
+			                      </div><!-- ./chart-responsive -->
+			                    </div><!-- /.col -->
+			                    <div class="col-md-4">
+			                      <ul class="chart-legend clearfix">
+			                        <li><i class="fa fa-circle-o text-red"></i> Negative</li>
+			                        <li><i class="fa fa-circle-o text-green"></i> Positive </li>
+			                        <li><i class="fa fa-circle-o text-yellow"></i> Neutral</li>
+			                      </ul>
+			                    </div><!-- /.col -->
+			                  </div><!-- /.row -->
+			                </div><!-- /.box-body -->
+			                <div class="box-footer no-padding">
+			                  <ul class="nav nav-pills nav-stacked">
+			                    <li><a href="#">Positive <span class="pull-right text-red"><i class="fa fa-angle-down"></i> 45%</span></a></li>
+			                    <li><a href="#">Negative <span class="pull-right text-green"><i class="fa fa-angle-up"></i> 48%</span></a></li>
+			                    <li><a href="#">Neutral <span class="pull-right text-yellow"><i class="fa fa-angle-left"></i> 7%</span></a></li>
+			                  </ul>
+			                </div><!-- /.footer -->
+		                  </div>
+		              	</div>
+					</div>
+					
+					<div class="panel panel-default" >
+		               <div class="panel-heading" style="padding:0px;">
+		                 	<h4 class="panel-title">
+		                      <a data-toggle="collapse" data-parent="#accordion" href="#hashtags_collapse">
+				          		 <div class="info-box bg-yellow" style="margin-bottom:0px;">
+					                <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
+					                <div class="info-box-content">
+					                  <span class="info-box-text">Hashtags</span>
+					                  <span class="info-box-number">5,200</span>
+					                  <div class="progress">
+					                    <div class="progress-bar" style="width: 50%"></div>
+					                  </div>
+					                  <span class="progress-description">
+					                    50% Increase in 30 Days
+					                  </span>
+					                </div><!-- /.info-box-content -->
+					              </div><!-- /.info-box -->
+								</a>
+		            		</h4>
+		                </div>
+		                <div id="hashtags_collapse" class="panel-collapse collapse in">
+		                  <div class="panel-body" style="margin-bottom:0px;">
+			                <div class="box-body">
+			                  <div class="row">
+			                  </div><!-- /.row -->
+			                </div><!-- /.box-body -->
+			                <div class="box-footer no-padding">
+			                </div><!-- /.footer -->
+		                  </div>
+		              	</div>
+					</div>
+					
+					<div class="panel panel-default" >
+		               <div class="panel-heading" style="padding:0px;">
+		                 	<h4 class="panel-title">
+		                      <a data-toggle="collapse" data-parent="#accordion" href="#mentions_collapse">
+				          		  <div class="info-box bg-green" style="margin-bottom:0px;">
+					                <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+					                <div class="info-box-content">
+					                  <span class="info-box-text">Mentions</span>
+					                  <span class="info-box-number">92,050</span>
+					                  <div class="progress">
+					                    <div class="progress-bar" style="width: 20%"></div>
+					                  </div>
+					                  <span class="progress-description">
+					                    20% Increase in 30 Days
+					                  </span>
+					                </div><!-- /.info-box-content -->
+					              </div><!-- /.info-box -->
+								</a>
+		            		</h4>
+		                </div>
+		                <div id="mentions_collapse" class="panel-collapse collapse in">
+		                  <div class="panel-body" style="margin-bottom:0px;">
+			                <div class="box-body">
+			                  <div class="row">
+			                  </div><!-- /.row -->
+			                </div><!-- /.box-body -->
+			                <div class="box-footer no-padding">
+			                </div><!-- /.footer -->
+		                  </div>
+		              	</div>
+					</div>
+					
+					<div class="panel panel-default" >
+		               <div class="panel-heading" style="padding:0px;">
+		                 	<h4 class="panel-title">
+		                      <a data-toggle="collapse" data-parent="#accordion" href="#direct_messages_collapse">
+				          		 <div class="info-box bg-aqua" style="margin-bottom:0px;">
+					                <span class="info-box-icon"><i class="ion-ios-chatbubble-outline"></i></span>
+					                <div class="info-box-content">
+					                  <span class="info-box-text">Direct Messages</span>
+					                  <span class="info-box-number">163,921</span>
+					                  <div class="progress">
+					                    <div class="progress-bar" style="width: 40%"></div>
+					                  </div>
+					                  <span class="progress-description">
+					                    40% Increase in 30 Days
+					                  </span>
+					                </div><!-- /.info-box-content -->
+					              </div><!-- /.info-box -->
+								</a>
+		            		</h4>
+		                </div>
+		                <div id="direct_messages_collapse" class="panel-collapse collapse in">
+		                  <div class="panel-body" style="margin-bottom:0px;">
+			                <div class="box-body">
+			                  <div class="row">
+			                  </div><!-- /.row -->
+			                </div><!-- /.box-body -->
+			                <div class="box-footer no-padding">
+			                </div><!-- /.footer -->
+		                  </div>
+		              	</div>
+					</div>
+             
             </div>
            </div>
-           
-           <div class="row" >       
-        	<div class="col-md-12">
-           	<div class="box box-default" >
-                <div class="box-header with-border">
-                  <h3 class="box-title">Sentiment</h3>
-                  <div class="box-tools pull-right">
-                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                  </div>
-                </div><!-- /.box-header -->
-                <div class="box-body">
-                  <div class="row">
-                    <div class="col-md-8">
-                      <div class="chart-responsive">
-                        <canvas id="pieChart" height="150"></canvas>
-                      </div><!-- ./chart-responsive -->
-                    </div><!-- /.col -->
-                    <div class="col-md-4">
-                      <ul class="chart-legend clearfix">
-                        <li><i class="fa fa-circle-o text-red"></i> Negative</li>
-                        <li><i class="fa fa-circle-o text-green"></i> Positive </li>
-                        <li><i class="fa fa-circle-o text-yellow"></i> Neutral</li>
-                      </ul>
-                    </div><!-- /.col -->
-                  </div><!-- /.row -->
-                </div><!-- /.box-body -->
-                <div class="box-footer no-padding">
-                  <ul class="nav nav-pills nav-stacked">
-                    <li><a href="#">Positive <span class="pull-right text-red"><i class="fa fa-angle-down"></i> 45%</span></a></li>
-                    <li><a href="#">Negative <span class="pull-right text-green"><i class="fa fa-angle-up"></i> 48%</span></a></li>
-                    <li><a href="#">Neutral <span class="pull-right text-yellow"><i class="fa fa-angle-left"></i> 7%</span></a></li>
-                  </ul>
-                </div><!-- /.footer -->
-              </div><!-- /.box -->
-             </div>    
-        	</div>
-            
+          </div>
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
 
@@ -525,6 +590,7 @@
 	      $("#mapModalHolder").load("pages/modals/map-modal.html");
 	      $("#topicsModalHolder").load("pages/modals/topics-modal.html"); 
 	      $("#userModalHolder").load("pages/modals/user-modal.html"); 
+	      $('#searchContent').hide();
 	    });
     </script> 
   </body>

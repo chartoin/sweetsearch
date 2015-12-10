@@ -189,7 +189,7 @@ $(function () {
       {latLng: [49.11, 11.06], name: 'help Needed'},
       {latLng: [17.3, -62.73], name: 'We shall prevail PorteOeuvrte'},
       {latLng: [42.90, 12.45], name: 'Vatican City is closed'},
-      {latLng: [44.73, 6.41], name: 'ISIS sucks!'},
+      {latLng: [44.73, 6.41], name: ' Sending thoughts and prayers to those in Paris #PrayForParis!'},
       {latLng: [-0.52, 134.93], name: 'We are United!'},
       {latLng: [43.93, 12.46], name: 'PorteOeuvrte'},
       {latLng: [47.14, 9.52], name: 'Hospital Info:-'},
@@ -388,15 +388,15 @@ $(function () {
   
   // Modal - Pop-Over for User
   
-  $('.product-title').click(function() {
+  $('.person-title').click(function() {
 	  $('#userModalContent').modal('toggle');
   });
   
   // Modal - Pop-Over for Topics
   
-//  $('.product-title').click(function() {
-//	  $('#topicsModalContent').modal('toggle');
-//  });
+  $('.topic-title').click(function() {
+	  $('#topicsModalContent').modal('toggle');
+  });
   
   // Modal - Pop-Over for Map
   
@@ -404,5 +404,14 @@ $(function () {
 	  $('#mapModalContent').modal('toggle');
   });
   
-
+  $('#search-btn').click(function() {
+	  $('#searchContent').fadeIn();
+  });
+  
+  $(function(){
+	    $('.products-list').slimScroll({
+	        height: '315px'
+	    });
+	});
+  
 });
