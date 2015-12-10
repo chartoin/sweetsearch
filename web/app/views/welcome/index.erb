@@ -1,0 +1,10 @@
+<div class="ui loading fluid multiple search selection dropdown">
+  <input type="hidden" name="country" value="kp">
+  <i class="dropdown icon"></i>
+  <input class="search">
+  <div class="default text">Search...</div>
+
+  <%(@results["response"]["docs"] rescue []).each do |result|%>
+        <li><%=result["text"].join%></li>
+  <%end%>
+</div>
