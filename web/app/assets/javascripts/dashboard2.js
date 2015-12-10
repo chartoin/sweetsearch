@@ -112,7 +112,7 @@ $(function () {
       color: "#f39c12",
       highlight: "#f39c12",
       label: "Neutral"
-    },
+    }
   ];
   var pieOptions = {
     //Boolean - Whether we should show a stroke on each segment
@@ -226,42 +226,42 @@ $(function () {
   //-----------------
   //- SPARKLINE BAR -
   //-----------------
-  $('.sparkbar').each(function () {
-    var $this = $(this);
-    $this.sparkline('html', {
-      type: 'bar',
-      height: $this.data('height') ? $this.data('height') : '30',
-      barColor: $this.data('color')
-    });
-  });
+  //$('.sparkbar').each(function () {
+  //  var $this = $(this);
+  //  $this.sparkline('html', {
+  //    type: 'bar',
+  //    height: $this.data('height') ? $this.data('height') : '30',
+  //    barColor: $this.data('color')
+  //  });
+  //});
 
   //-----------------
   //- SPARKLINE PIE -
   //-----------------
-  $('.sparkpie').each(function () {
-    var $this = $(this);
-    $this.sparkline('html', {
-      type: 'pie',
-      height: $this.data('height') ? $this.data('height') : '90',
-      sliceColors: $this.data('color')
-    });
-  });
+  //$('.sparkpie').each(function () {
+  //  var $this = $(this);
+  //  $this.sparkline('html', {
+  //    type: 'pie',
+  //    height: $this.data('height') ? $this.data('height') : '90',
+  //    sliceColors: $this.data('color')
+  //  });
+  //});
 
   //------------------
   //- SPARKLINE LINE -
   //------------------
-  $('.sparkline').each(function () {
-    var $this = $(this);
-    $this.sparkline('html', {
-      type: 'line',
-      height: $this.data('height') ? $this.data('height') : '90',
-      width: '100%',
-      lineColor: $this.data('linecolor'),
-      fillColor: $this.data('fillcolor'),
-      spotColor: $this.data('spotcolor')
-    });
-  });
-  
+  //$('.sparkline').each(function () {
+  //  var $this = $(this);
+  //  $this.sparkline('html', {
+  //    type: 'line',
+  //    height: $this.data('height') ? $this.data('height') : '90',
+  //    width: '100%',
+  //    lineColor: $this.data('linecolor'),
+  //    fillColor: $this.data('fillcolor'),
+  //    spotColor: $this.data('spotcolor')
+  //  });
+  //});
+  //
   //------------------
   //- D3 - CLoud -
   //------------------
