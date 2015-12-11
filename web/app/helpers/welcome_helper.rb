@@ -1,9 +1,16 @@
 module WelcomeHelper
     def format_scrape
-        response = {
-            'whos' => get_whos(get_names),
-            'whats' => get_whats(get_topics)
-        }
+        if params[:method] and params[:method] == 'facets'
+            response = {
+                'whos' => get_whos(get_names),
+                'whats' => get_whats(get_topics)
+            }
+        else
+            response = {
+                'tweets' => get_tweets
+            }
+        end
+        response
     end
 
     def get_things(list)
@@ -73,5 +80,23 @@ module WelcomeHelper
             end
         end
         what
+    end
+
+    def get_tweets
+        tweets = []
+        @resuts['response']['docs'].each do |v|
+            tweets << get_tweet(v)
+        end
+        tweets
+    end
+
+    def get_tweet(v)
+        tweet = {
+            'id' => v['id']
+            'name' => v['name']
+            'image' => v['image']
+            'tweet' => v['text'][0]
+            'topic' => v['topics'][0]
+        }
     end
 end
