@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'rsolr-ext'
 
+gem 'alchemy_api'
 gem 'alchemy-api-rb', :require => 'alchemy_api'
 gem 'typhoeus', '0.4.0'
 
