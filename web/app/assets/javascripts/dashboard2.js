@@ -375,16 +375,16 @@ $(function () {
 	    responsive: true
 	  }; */
   
-	  $('.tweetDateRangePicker').daterangepicker({
-	      ranges: {
-	          'Today': [moment(), moment()],
-	          'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-	          'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-	          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-	          'This Month': [moment().startOf('month'), moment().endOf('month')],
-	          'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-	       }
-	   });
+  $('.tweetDateRangePicker').daterangepicker({
+        ranges: {
+            'Today': [moment(), moment()],
+            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+            'This Month': [moment().startOf('month'), moment().endOf('month')],
+            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        }
+  });
   
   // Modal - Pop-Over for User
   
@@ -409,20 +409,16 @@ $(function () {
   });
 
     $('.products-list').slimScroll({
-	        height: '315px'
+            height: '315px'
     });
 
-
-    var search_string;
 
     $('#main_search_form').submit(function (event) {
         event.preventDefault();
 
         var search_term = $('#search-btn-val').val();
 
-            search_string = search_term;
-
-            postToSolr(search_string);
+        postToSolr(search_term);
 
         });
 
@@ -456,29 +452,83 @@ $(function () {
             console.log(data);
 
             $('.user_tweet_content').find('.products-list').empty();
+            $('.topic_tweet_content').find('.products-list').empty();
 
-            var data_array = data.response.docs;
+            var whos_data_array = data.whos;
+            var whats_data_array = data.whats;
 
-            for (var i = 0; i < data_array.length; i++) {
-                var obj = data_array[i];
+            if(whos_data_array.length > 0) {
+
+                for (var i = 0; i < whos_data_array.length; i++) {
+                    var obj = whos_data_array[i];
+                    $('.user_tweet_content').find('.products-list').append(
+                        "<li class ='item'>" +
+                        "<div class='product-img'>" +
+                        "<img src=' " + obj.image + "'/>" +
+                        "</div>" +
+                        "<div class='product-info'>" +
+                        "<a href='#' class='product-title person-title'>" +
+                        obj.name +
+                        "<span class='label label-success pull-right'>" +
+                        "</span>" +
+                        "</a>" +
+                        "<span class='product-description person-tweet-text'>" +
+                        obj.tweet +
+                        "</span>" +
+                        "</div>" +
+                        "</li>"
+                    );
+                }
+            }
+
+            else {
                 $('.user_tweet_content').find('.products-list').append(
                     "<li class ='item'>" +
-                    "<div class='product-img'>" +
-                    "<img src=' " + obj.image + "'/>" +
-                    "</div>" +
-                    "<div class='product-info'>" +
-                    "<a href='#' class='product-title person-title'>" +
-                    obj.name +
-                    "<span class='label label-success pull-right'>" +
-                    "</span>" +
-                    "</a>" +
-                    "<span class='product-description person-tweet-text'>" +
-                    obj.text +
+                    "<div>" +
+                    "<span class='product-description person-tweet-text text-center'>" +
+                    "No tweets found." +
                     "</span>" +
                     "</div>" +
                     "</li>"
                 );
             }
+
+            if(whats_data_array.length > 0) {
+
+                for (var i = 0; i < whats_data_array.length; i++) {
+                    var obj = whats_data_array[i];
+                    $('.topic_tweet_content').find('.products-list').append(
+                        "<li class ='item'>" +
+                        "<div class='product-img'>" +
+                        "<img src=' " + obj.image + "'/>" +
+                        "</div>" +
+                        "<div class='product-info'>" +
+                        "<a href='#' class='product-title person-title'>" +
+                        obj.name +
+                        "<span class='label label-success pull-right'>" +
+                        "</span>" +
+                        "</a>" +
+                        "<span class='product-description person-tweet-text'>" +
+                        obj.tweet +
+                        "</span>" +
+                        "</div>" +
+                        "</li>"
+                    );
+                }
+            }
+
+            else {
+                $('.topic_tweet_content').find('.products-list').append(
+                    "<li class ='item'>" +
+                    "<div>" +
+                    "<span class='product-description person-tweet-text text-center'>" +
+                    "No tweets found." +
+                    "</span>" +
+                    "</div>" +
+                    "</li>"
+                );
+            }
+
         });
     }
 
