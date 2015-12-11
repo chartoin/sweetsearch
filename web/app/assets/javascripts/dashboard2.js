@@ -407,11 +407,79 @@ $(function () {
   $('#search-btn').click(function() {
 	  $('#searchContent').fadeIn();
   });
-  
-  $(function(){
-	    $('.products-list').slimScroll({
+
+    $('.products-list').slimScroll({
 	        height: '315px'
-	    });
-	});
-  
+    });
+
+
+    var search_string;
+
+    $('#main_search_form').submit(function (event) {
+        event.preventDefault();
+
+        var search_term = $('#search-btn-val').val();
+
+            search_string = search_term;
+
+            postToSolr(search_string);
+
+        });
+
+        $('.language_chooser').find('.active a').click(function() {
+            //getLangDateInfo();
+        });
+
+        $('.daterangepicker').find('.applyBtn').click(function() {
+            getLangDateInfo();
+        });
+
+    function getLangDateInfo() {
+
+        var language = "all";
+        var start_date = $("input[name=daterangepicker_start]").val();
+        var end_date = $("input[name=daterangepicker_end]").val();
+
+        //language = $('.language_chooser').find('.active a').html();
+        //console.log("Language is"+language);
+
+        var search_term = $('#search-btn-val').val();
+
+        var search_string = search_term + '&date_from='+start_date + '&date_to='+end_date +'&language='+language;
+
+        postToSolr(search_string);
+    }
+
+    function postToSolr(search_query)
+    {
+        $.post("/welcome/search?query=" + search_query, function (data) {
+            console.log(data);
+
+            $('.user_tweet_content').find('.products-list').empty();
+
+            var data_array = data.response.docs;
+
+            for (var i = 0; i < data_array.length; i++) {
+                var obj = data_array[i];
+                $('.user_tweet_content').find('.products-list').append(
+                    "<li class ='item'>" +
+                    "<div class='product-img'>" +
+                    "<img src=' " + obj.image + "'/>" +
+                    "</div>" +
+                    "<div class='product-info'>" +
+                    "<a href='#' class='product-title person-title'>" +
+                    obj.name +
+                    "<span class='label label-success pull-right'>" +
+                    "</span>" +
+                    "</a>" +
+                    "<span class='product-description person-tweet-text'>" +
+                    obj.text +
+                    "</span>" +
+                    "</div>" +
+                    "</li>"
+                );
+            }
+        });
+    }
+
 });
