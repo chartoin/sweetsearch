@@ -1,3 +1,4 @@
+import sys
 from twython import Twython
 from os import listdir, mkdir
 from os.path import isfile, join, isdir, exists
@@ -46,8 +47,12 @@ class TweetCollector:
         f = open(join(directory, status['id_str']), 'w').write(str(status))
 
 def main():
+    if len(sys.argv) == 2:
+        download_dir = sys.argv[1]
+    else:
+        download_dir = config.twitter['download_dir']
+
     languages = config.twitter['languages']
-    download_dir = config.twitter['download_dir']
     if not exists(download_dir):
         mkdir(download_dir)
     for account in config.twitter['accounts']:

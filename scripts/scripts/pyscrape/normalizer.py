@@ -1,3 +1,4 @@
+import sys
 from os import listdir, mkdir, remove
 from os.path import isfile, join, exists
 import time
@@ -68,7 +69,20 @@ class Normalizer:
         f.write(content)
 
 def main():
-    n = Normalizer(config.twitter['download_dir'], config.twitter['normalization_dir'], config.twitter['normalized_filename'])
+    if len(sys.argv) == 4:
+        download_dir = sys.argv[1]
+        normalization_dir = sys.argv[2]
+        normalized_filename = sys.argv[3]
+    elif len(sys.argv) == 3:
+        download_dir = sys.argv[1]
+        normalization_dir = sys.argv[2]
+        normalized_filename = config.twitter['normalized_filename']
+    else:
+        download_dir = config.twitter['download_dir']
+        normalization_dir = config.twitter['normalized_dir']
+        normalized_filename = config.twitter['normalized_filename']
+
+    n = Normalizer(download_dir, normalization_dir, normalized_filename)
     n.normalize()
 
 if __name__ == '__main__':
