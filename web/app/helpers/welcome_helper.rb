@@ -88,7 +88,6 @@ module WelcomeHelper
     def get_wheres
       places = []
       results = @results['response']['docs']
-      binding.pry
 
       results.each do |result|
         places << {'id' => result['id'],
