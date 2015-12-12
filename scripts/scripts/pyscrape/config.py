@@ -50,6 +50,23 @@ twitter = {
                 'ru': [ 'sportsru', 'Sovsport_hockey' ],
                 'fr': [ 'itele', 'afpfr' ]
             }
+        },
+        {
+            'handle': 'sivaramarajalu',
+            'consumer': {
+                'key': 'jWUYopBXEds1RorJpAP7ql8bs',
+                'secret': 'iVXuUM381U1sIApK1c3HemyTrnuILVJqvZZQuY6yx4VGHhtHYH'
+            },
+            'oauth': {
+                'token': '852814213-bHYkBeOiDaAXGxiOuQ9TnTEzSzFtzKHsTfCa6vPl',
+                'secret': 'RLtxqfqVaRC8FjGpvdM4vDQp8LtrYdUYempYWg0OX3AC8'
+            },
+            'lists': {
+                'en': [ 'BBCBreaking', 'nytimesworld', 'nytfood', 'BBCNews', 'washingtonpost', 'FoxNews' ],
+                'de': [ 'N24','phoenix_de' ],
+                'ru': [ 'TodauRussia', 'KremlinRussia_E' ],
+                'fr': [ 'TV5MONDE','BreakingF24', 'FRANCE24', 'AppStore' ]
+            }
         }
     ],
     'languages': [ 'en', 'de', 'ru', 'fr' ],
