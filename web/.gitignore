@@ -17,5 +17,6 @@
 /tmp
 
 .idea/
-*/*Gemfile.lock
-*/*.gitignore
+*/Gemfile.lock
+*/.gitignore
+../scripts*

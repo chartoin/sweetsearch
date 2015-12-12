@@ -1,15 +1,16 @@
 module WelcomeHelper
     def format_scrape
-        response =  if params[:method] and params[:method] == 'facets'
-                        {
-                            'whos' => get_whos(get_names),
-                            'whats' => get_whats(get_topics)
-                        }
-                    else
-                        {
-                            'tweets' => get_tweets
-                        }
-                    end
+        if params[:method] and params[:method] == 'facets'
+            response = {
+                'whos' => get_whos(get_names),
+                'whats' => get_whats(get_topics),
+                'places' => get_wheres
+            }
+        else
+            response = {
+                'tweets' => get_tweets
+            }
+        end
         response
     end
 
@@ -82,6 +83,23 @@ module WelcomeHelper
             end
         end
         what
+    end
+
+    def get_wheres
+      places = []
+      results = @results['response']['docs']
+      binding.pry
+
+      results.each do |result|
+        places << {'id' => result['id'],
+         'name' => result['name'],
+         'image' => result['image'],
+         'tweet' => result['text'][0],
+         'lat_long' => (Geocoder.search(result['user_location']).first.data["geometry"]["location"] rescue nil),
+         'location' => result['user_location']
+        }
+      end
+      places
     end
 
     def get_tweets
