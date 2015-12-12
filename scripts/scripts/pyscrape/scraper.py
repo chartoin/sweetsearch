@@ -25,7 +25,7 @@ class TweetCollector:
                     statuses = twitter.get_user_timeline(screen_name=screen_name)
                     self._save_uncollected(statuses, language)
                 except:
-                    print('Collect failed for user: {0} and account: {1}'.format(self._screen_name, screen_name))
+                    print('Collect failed for user: {0} and account: {1} with exception {2}'.format(self._screen_name, screen_name, sys.exc_info()[0]))
 
     def _save_uncollected(self, statuses, language):
         for status in statuses:

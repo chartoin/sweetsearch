@@ -54,6 +54,7 @@ class Normalizer:
 
         normalized_tweet['name'] = tweet['user']['name']
         normalized_tweet['screen_name'] = tweet['user']['screen_name']
+        normalized_tweet['user_location'] = tweet['user']['location']
         normalized_tweet['location'] = tweet['coordinates']
         normalized_tweet['image'] = tweet['user']['profile_image_url']
         normalized_tweet['topics'] = normalized_tweet['tweet_hashtags']
