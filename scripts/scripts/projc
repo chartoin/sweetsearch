@@ -3,6 +3,7 @@
 PROJ_DIR=$(cd "$(dirname "$0")"; pwd -P)/..
 
 PROJ_BIN_DIR=$PROJ_DIR/bin
+PROJ_SCRIPTS_DIR=$PROJ_DIR/scripts
 SOLR_BIN=$PROJ_BIN_DIR/solr
 TREC_BIN=$PROJ_BIN_DIR/trec_eval
 PYTHON_BIN=$PROJ_BIN_DIR/python
@@ -141,12 +142,19 @@ topterms () {
     curl "$SOLR_URL/$solr_core/terms?wt=json&indent=true&debugQuery=true&terms.fl=$2&terms.sort=count"
 }
 
+collect () {
+    "$PYTHON_BIN" "$PROJ_SCRIPTS_DIR/pyscrape/scraper.py" "$PROJ_DATA_DIR/downloaded"
+    "$PYTHON_BIN" "$PROJ_SCRIPTS_DIR/pyscrape/normalizer.py" "$PROJ_DATA_DIR/downloaded" "$PROJ_DATA_DIR/normalized" "tweets.json"
+}
+
 if [ x"$1" == "xrun" ]; then
     shift
     run $@
 elif [ x"$1" == "xsetup" ]; then
     shift
     setup $@
+elif [ x"$1" == "xcollect" ]; then
+    collect
 elif [ x"$1" == "xcreatesolrcore" ]; then
     createsolrcore $2
 elif [ x"$1" == "xstartsolr" ]; then
