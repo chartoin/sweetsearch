@@ -53,6 +53,7 @@ module WelcomeHelper
                 who['count'] = count
                 who['image'] = v['image']
                 who['tweet'] = v['text'][0]
+                who['screen_name'] = v['screen_name']
             end
         end
         who
@@ -77,6 +78,7 @@ module WelcomeHelper
                 what['image'] = v['image']
                 what['tweet'] = v['text'][0]
                 what['topic'] = v['topics'][0]
+                what['screen_name'] = v['screen_name']
             end
         end
         what
@@ -91,12 +93,11 @@ module WelcomeHelper
     end
 
     def get_tweet(v)
-        tweet = {
-            'id' => v['id']
-            'name' => v['name']
-            'image' => v['image']
-            'tweet' => v['text'][0]
-            'topic' => v['topics'][0]
+        tweet = {'id' => v['id'],
+                 'name' => v['name'],
+                 'image' => v['image'],
+                 'tweet' => v['text'][0],
+                 'topic' => v['topics'][0],
         }
     end
 end
