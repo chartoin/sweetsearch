@@ -385,31 +385,9 @@ $(function () {
             'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
         }
   });
-  
-  // Modal - Pop-Over for User
-  
-  $('.person-title').click(function() {
-	  $('#userModalContent').modal('toggle');
-  });
-  
-  // Modal - Pop-Over for Topics
-  
-  $('.topic-title').click(function() {
-	  $('#topicsModalContent').modal('toggle');
-  });
-  
-  // Modal - Pop-Over for Map
-  
-  $('.jvectormap-element').click(function() {
-	  $('#mapModalContent').modal('toggle');
-  });
-  
-  $('#search-btn').click(function() {
-	  $('#searchContent').fadeIn();
-  });
 
     $('.products-list').slimScroll({
-            height: '315px'
+        height: '315px'
     });
 
 
@@ -430,106 +408,290 @@ $(function () {
             getLangDateInfo();
         });
 
-    function getLangDateInfo() {
+    // Modal - Pop-Over for User
 
-        var language = "all";
-        var start_date = $("input[name=daterangepicker_start]").val();
-        var end_date = $("input[name=daterangepicker_end]").val();
+    //$('.person-title').click(function() {
+    //    console.log("Hello!");
+    //    console.log($(this).text());
+    //    getInfo4Modal("who");
+    //    return false;
+    //    //$('#userModalContent').modal('show');
+    //});
+    //
+    //// Modal - Pop-Over for Topics
+    //
+   /* $('.topic-title').click(function() {
+        alert("Hello topis!");
+        getInfo4Modal("what");
+        $('#topicsModalContent').modal('show');
+        return false;
+    });*/
+    //
+    //// Modal - Pop-Over for Map
+    //
+    //$('.jvectormap-element').click(function() {
+    //    getInfo4Modal("where");
+    //    $('#mapModalContent').modal('show');
+    //});
+});
 
-        //language = $('.language_chooser').find('.active a').html();
-        //console.log("Language is"+language);
+function getLangDateInfo() {
 
-        var search_term = $('#search-btn-val').val();
+    var language = "all";
+    var start_date = $("input[name=daterangepicker_start]").val();
+    var end_date = $("input[name=daterangepicker_end]").val();
 
-        var search_string = search_term + '&date_from='+start_date + '&date_to='+end_date +'&language='+language;
+    //language = $('.language_chooser').find('.active a').html();
+    //console.log("Language is"+language);
 
-        postToSolr(search_string);
+    var search_term = $('#search-btn-val').val();
+
+    var search_string = search_term + '&method=facets'+'&date_from='+start_date + '&date_to='+end_date +'&language='+language;
+
+    //postToSolr(search_string);
+}
+
+
+function getInfo4Modal(came_from_module, facet_search) {
+
+    var language = "all";
+
+    var search_term = $('#search-btn-val').val();
+
+    var search_string;
+
+    if(came_from_module == "who" ) {
+        search_string = "text:"+search_term+" AND screen_name:"+facet_search;
+        postToSolrForUserModal(search_string);
     }
+    else if(came_from_module == "what" ) {
+        search_string = "text:"+search_term+" AND topics:"+facet_search;
+        postToSolrForTopicsModal(search_string);
+    }
+}
 
-    function postToSolr(search_query)
-    {
-        $.post("/welcome/search?query=" + search_query, function (data) {
-            console.log(data);
+function postToSolr(search_query) {
 
-            $('.user_tweet_content').find('.products-list').empty();
-            $('.topic_tweet_content').find('.products-list').empty();
+    $.post("/welcome/search?query=" + search_query + "&method=facets", function (data) {
+        console.log(data);
 
-            var whos_data_array = data.whos;
-            var whats_data_array = data.whats;
+        $('.user_tweet_content').find('.products-list').empty();
+        $('.topic_tweet_content').find('.products-list').empty();
 
-            if(whos_data_array.length > 0) {
+        var whos_data_array = data.whos;
+        var whats_data_array = data.whats;
 
-                for (var i = 0; i < whos_data_array.length; i++) {
-                    var obj = whos_data_array[i];
-                    $('.user_tweet_content').find('.products-list').append(
-                        "<li class ='item'>" +
-                        "<div class='product-img'>" +
-                        "<img src=' " + obj.image + "'/>" +
-                        "</div>" +
-                        "<div class='product-info'>" +
-                        "<a href='#' class='product-title person-title'>" +
-                        obj.name +
-                        "<span class='label label-success pull-right'>" +
-                        "</span>" +
-                        "</a>" +
-                        "<span class='product-description person-tweet-text'>" +
-                        obj.tweet +
-                        "</span>" +
-                        "</div>" +
-                        "</li>"
-                    );
-                }
-            }
+        if (whos_data_array.length > 0) {
 
-            else {
+            for (var i = 0; i < whos_data_array.length; i++) {
+                var obj = whos_data_array[i];
                 $('.user_tweet_content').find('.products-list').append(
                     "<li class ='item'>" +
-                    "<div>" +
-                    "<span class='product-description person-tweet-text text-center'>" +
-                    "No tweets found." +
+                    "<div class='product-img'>" +
+                    "<img src=' " + obj.image + "'/>" +
+                    "</div>" +
+                    "<div class='product-info'>" +
+                    "<a href='#' class='product-title person-title' data-screen_name=\""+obj.screen_name+"\">" +
+                    obj.name +
+                    "<span class='label label-success pull-right'>" +
+                    obj.count +
+                    "</span>" +
+                    "</a>" +
+                    "<span class='product-description person-tweet-text'>" +
+                    obj.tweet +
                     "</span>" +
                     "</div>" +
                     "</li>"
                 );
             }
+        }
 
-            if(whats_data_array.length > 0) {
+        else {
+            $('.user_tweet_content').find('.products-list').append(
+                "<li class ='item'>" +
+                "<div>" +
+                "<span class='product-description person-tweet-text text-center'>" +
+                "No tweets found." +
+                "</span>" +
+                "</div>" +
+                "</li>"
+            );
+        }
 
-                for (var i = 0; i < whats_data_array.length; i++) {
-                    var obj = whats_data_array[i];
-                    $('.topic_tweet_content').find('.products-list').append(
-                        "<li class ='item'>" +
-                        "<div class='product-img'>" +
-                        "<img src=' " + obj.image + "'/>" +
-                        "</div>" +
-                        "<div class='product-info'>" +
-                        "<a href='#' class='product-title person-title'>" +
-                        obj.name +
-                        "<span class='label label-success pull-right'>" +
-                        "</span>" +
-                        "</a>" +
-                        "<span class='product-description person-tweet-text'>" +
-                        obj.tweet +
-                        "</span>" +
-                        "</div>" +
-                        "</li>"
-                    );
-                }
-            }
+        if (whats_data_array.length > 0) {
 
-            else {
+            for (var i = 0; i < whats_data_array.length; i++) {
+                var obj = whats_data_array[i];
                 $('.topic_tweet_content').find('.products-list').append(
                     "<li class ='item'>" +
-                    "<div>" +
-                    "<span class='product-description person-tweet-text text-center'>" +
-                    "No tweets found." +
+                    "<div class='product-img'>" +
+                    "<img src=' " + obj.image + "'/>" +
+                    "</div>" +
+                    "<div class='product-info'>" +
+                    "<a href='#' class='product-title topic-title' data-topics=\""+obj.topic+"\">" +
+                    obj.topic +
+                    "<span class='label label-success pull-right'>" +
+                    obj.count +
+                    "</span>" +
+                    "</a>" +
+                    "<span class='product-description person-tweet-text'>" +
+                    obj.tweet +
                     "</span>" +
                     "</div>" +
                     "</li>"
                 );
             }
+        }
 
-        });
-    }
+        else {
+            $('.topic_tweet_content').find('.products-list').append(
+                "<li class ='item'>" +
+                "<div>" +
+                "<span class='product-description person-tweet-text text-center'>" +
+                "No tweets found." +
+                "</span>" +
+                "</div>" +
+                "</li>"
+            );
+        }
 
-});
+        attachEvents();
+
+    });
+}
+
+function postToSolrForUserModal(search_query) {
+
+    $.post("/welcome/search?query="+search_query, function (data) {
+        console.log(data);
+
+        var whos_data_array = data.tweets;
+
+        $('.user-modal-tweet-content').find('.products-list').empty();
+
+        $('#userModalLabel').html("Tweets for "+whos_data_array[0].name);
+
+        if (whos_data_array.length > 0) {
+
+            for (var i = 0; i < whos_data_array.length; i++) {
+                var obj = whos_data_array[i];
+                $('.user-modal-tweet-content').find('.products-list').append(
+                    "<li class ='item'>" +
+                    "<div class='product-img'>" +
+                    "<img src=' " + obj.image + "'/>" +
+                    "</div>" +
+                    "<div class='product-info'>" +
+                    "<a href='#' class='product-title person-title'>" +
+                    obj.name +
+                    "<span class='label label-success pull-right'>" +
+                    "</span>" +
+                    "</a>" +
+                    "<span class='product-description person-tweet-text'>" +
+                    obj.tweet +
+                    "</span>" +
+                    "</div>" +
+                    "</li>"
+                );
+            }
+        }
+
+        else {
+            $('.user_tweet_content').find('.products-list').append(
+                "<li class ='item'>" +
+                "<div>" +
+                "<span class='product-description person-tweet-text text-center'>" +
+                "No tweets found." +
+                "</span>" +
+                "</div>" +
+                "</li>"
+            );
+        }
+
+
+
+    });
+}
+
+function postToSolrForTopicsModal(search_query) {
+
+    console.log(search_query)
+
+    $.post("/welcome/search?query="+search_query, function (data) {
+        console.log(data);
+
+        var whats_data_array = data.tweets;
+
+        $('.topics-modal-tweet-content').find('.products-list').empty();
+
+        $('#topicsModalLabel').html("Tweets for "+whats_data_array[0].topic);
+
+        if (whats_data_array.length > 0) {
+
+            for (var i = 0; i < whats_data_array.length; i++) {
+                var obj = whats_data_array[i];
+                $('.topics-modal-tweet-content').find('.products-list').append(
+                    "<li class ='item'>" +
+                    "<div class='product-img'>" +
+                    "<img src=' " + obj.image + "'/>" +
+                    "</div>" +
+                    "<div class='product-info'>" +
+                    "<a href='#' class='product-title person-title' >" +
+                    obj.name +
+                    "<span class='label label-success pull-right'>" +
+                    "</span>" +
+                    "</a>" +
+                    "<span class='product-description person-tweet-text'>" +
+                    obj.tweet +
+                    "</span>" +
+                    "</div>" +
+                    "</li>"
+                );
+            }
+        }
+
+        else {
+            $('.user_tweet_content').find('.products-list').append(
+                "<li class ='item'>" +
+                "<div>" +
+                "<span class='product-description person-tweet-text text-center'>" +
+                "No tweets found." +
+                "</span>" +
+                "</div>" +
+                "</li>"
+            );
+        }
+
+    });
+}
+
+function attachEvents() {
+
+    // Modal - Pop-Over for User
+
+    var screen_name, topic_name;
+
+    $('.person-title').click(function() {
+        console.log($(this).attr("data-screen_name"));
+        screen_name = $(this).attr("data-screen_name");
+        getInfo4Modal("who", screen_name);
+        $('#userModalContent').modal('show');
+        return false;
+    });
+
+    // Modal - Pop-Over for Topics
+
+    $('.topic-title').click(function() {
+        console.log($(this).attr("data-topics"));
+        topic_name = $(this).attr("data-topics");
+        getInfo4Modal("what", topic_name);
+        $('#topicsModalContent').modal('show');
+        return false;
+    });
+
+    // Modal - Pop-Over for Map
+
+    $('.jvectormap-element').click(function() {
+        getInfo4Modal("where");
+        $('#mapModalContent').modal('show');
+    });
+}
