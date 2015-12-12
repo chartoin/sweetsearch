@@ -64,7 +64,7 @@ twitter = {
             'lists': {
                 'en': [ 'BBCBreaking', 'nytimesworld', 'nytfood', 'BBCNews', 'washingtonpost', 'FoxNews' ],
                 'de': [ 'N24','phoenix_de' ],
-                'ru': [ 'TodauRussia', 'KremlinRussia_E' ],
+                'ru': [ 'KremlinRussia_E' ],
                 'fr': [ 'TV5MONDE','BreakingF24', 'FRANCE24', 'AppStore' ]
             }
         }
