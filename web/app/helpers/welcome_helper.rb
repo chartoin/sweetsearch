@@ -54,6 +54,7 @@ module WelcomeHelper
                 who['count'] = count
                 who['image'] = v['image']
                 who['tweet'] = v['text'][0]
+                who['tags'] = v['PERSON']
                 who['screen_name'] = v['screen_name']
             end
         end
@@ -78,7 +79,8 @@ module WelcomeHelper
                 what['count'] = count
                 what['image'] = v['image']
                 what['tweet'] = v['text'][0]
-                what['topic'] = v['topics'][0]
+                what['topic'] = topic
+                what['tags'] = v['topics']
                 what['screen_name'] = v['screen_name']
             end
         end
