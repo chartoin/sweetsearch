@@ -334,12 +334,64 @@ $(function () {
 
     });
 
-    $('.language_chooser').find('.active a').click(function() {
-        //getLangDateInfo();
-    });
-
     $('.daterangepicker').find('.applyBtn').click(function() {
         getLangDateInfo();
+    });
+
+    $('#all_check').click(function() {
+        if ($('#all_check').is(":checked")) {
+            $('#eng_check').prop('checked', true);
+            $('#ru_check').prop('checked', true);
+            $('#de_check').prop('checked', true);
+            $('#fr_check').prop('checked', true);
+        }
+        else {
+            $('#eng_check').prop('checked', false);
+            $('#ru_check').prop('checked', false);
+            $('#de_check').prop('checked', false);
+            $('#fr_check').prop('checked', false);
+        }
+    });
+
+    $('#search_language-btn').click(function() {
+
+        var selected = [];
+        $('.language_chooser input:checked').each(function() {
+            if($(this).attr('value') != "all") {
+                selected.push($(this).attr('value'));
+            }
+        });
+
+        var search_term = $('#search-btn-val').val();
+
+        if(search_term == "") {
+            var jElement = $('#main_search_form');
+            jElement.css("border-color","red");
+            setTimeout(
+                function() { jElement.css("border-color","black"); },
+                2000
+            );
+        }
+
+        else {
+            var search_string = "text:" + search_term;
+
+            if (selected.length > 0) {
+                search_string += "AND  (";
+            }
+
+            $.each(selected, function (index, value) {
+                if (index == selected.length - 1) {
+                    search_string += "lang:" + value + ")";
+                }
+                else {
+                    search_string += "lang:" + value + ",";
+                }
+            });
+
+            postToSolr(search_string);
+        }
+
     });
 
     // Modal - Pop-Over for User
