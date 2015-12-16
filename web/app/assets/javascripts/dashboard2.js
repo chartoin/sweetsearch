@@ -384,7 +384,7 @@ function getLangDateInfo() {
 
     console.log(search_string);
 
-    //postToSolr(search_string);
+    postToSolr(search_string);
 }
 
 
@@ -403,6 +403,10 @@ function getInfo4Modal(came_from_module, facet_search) {
     else if(came_from_module == "what" ) {
         search_string = "text:"+search_term+" AND topics:"+facet_search;
         postToSolrForTopicsModal(search_string);
+    }
+    else if(came_from_module == "where" ) {
+        search_string = "text:"+search_term+" AND user_location: \""+facet_search+"\"";
+        postToSolrForMapModal(search_string, facet_search);
     }
 }
 
@@ -517,8 +521,6 @@ function postToSolr(search_query) {
                 }
             }
 
-            console.log(locations)
-
             $('#world-map-markers').vectorMap({
 
                 map: 'world_mill_en',
@@ -551,11 +553,48 @@ function postToSolr(search_query) {
                 },
                 markers: locations,
                 onMarkerClick: function(events, index) {
-                    postToSolrForMapModal(locations[index].name)
+                    getInfo4Modal("where",locations[index].name);
+                    $('#mapModalContent').modal('show');
                 }
             });
 
             attachEvents();
+        }
+
+        else {
+
+            $('#world-map-markers').vectorMap({
+
+                map: 'world_mill_en',
+                normalizeFunction: 'polynomial',
+                hoverOpacity: 0.7,
+                hoverColor: false,
+                backgroundColor: 'transparent',
+                regionStyle: {
+                    initial: {
+                        fill: 'rgba(210, 214, 222, 1)',
+                        "fill-opacity": 1,
+                        stroke: 'none',
+                        "stroke-width": 0,
+                        "stroke-opacity": 1
+                    },
+                    hover: {
+                        "fill-opacity": 0.7,
+                        cursor: 'pointer'
+                    },
+                    selected: {
+                        fill: 'yellow'
+                    },
+                    selectedHover: {}
+                },
+                markerStyle: {
+                    initial: {
+                        fill: '#00a65a',
+                        stroke: '#111'
+                    }
+                }
+            });
+
         }
     });
 }
@@ -664,7 +703,7 @@ function postToSolrForTopicsModal(search_query) {
     });
 }
 
-function postToSolrForMapModal(search_query) {
+function postToSolrForMapModal(search_query, location_sent) {
 
     $.post("/welcome/search?query="+search_query, function (data) {
         console.log(data);
@@ -673,7 +712,7 @@ function postToSolrForMapModal(search_query) {
 
         $('.map-modal-tweet-content').find('.products-list').empty();
 
-        $('#mapModalLabel').html("Tweets from "+search_query);
+        $('#mapModalLabel').html("Tweets from "+location_sent);
 
         if (whos_data_array.length > 0) {
 
@@ -740,10 +779,4 @@ function attachEvents() {
         return false;
     });
 
-    // Modal - Pop-Over for Map
-
-    $('.jvectormap-element').click(function() {
-        getInfo4Modal("where");
-        $('#mapModalContent').modal('show');
-    });
 }
