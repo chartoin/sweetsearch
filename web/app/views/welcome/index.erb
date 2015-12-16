@@ -151,22 +151,16 @@
                                                 <span class="info-box-icon"><i class="ion ion-social-twitter-outline"></i></span>
                                                 <div class="info-box-content">
                                                     <span class="info-box-text">Popularity</span>
-                                                    <span class="info-box-number">114,381</span>
-                                                    <div class="progress">
-                                                        <div class="progress-bar" style="width: 70%"></div>
-                                                    </div>
-                                                    <span class="progress-description">
-                                                        70% Increase in 30 Days
-                                                    </span>
+                                                    <span id="popularity_count" class="info-box-number"></span>
                                                 </div><!-- /.info-box-content -->
                                             </div><!-- /.info-box -->
                                         </a>
                                     </h4>
                                 </div>
                                 <div id="popularity_collapse" class="panel-collapse collapse in">
-                                    <div class="panel-body" style="margin-bottom:0px;">
+                                    <div class="panel-body" style="margin-bottom:0px; display:none">
                                         <div class="box-body">
-                                            <div class="row">
+                                            <div class="row" >
                                                 <div class="col-md-8">
                                                     <div class="chart-responsive">
                                                         <canvas id="pieChart" height="150"></canvas>
@@ -200,20 +194,14 @@
                                                 <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
                                                 <div class="info-box-content">
                                                     <span class="info-box-text">Hashtags</span>
-                                                    <span class="info-box-number">5,200</span>
-                                                    <div class="progress">
-                                                        <div class="progress-bar" style="width: 50%"></div>
-                                                    </div>
-                                                    <span class="progress-description">
-                                                        50% Increase in 30 Days
-                                                    </span>
+                                                    <span id="hashtag_count" class="info-box-number"></span>
                                                 </div><!-- /.info-box-content -->
                                             </div><!-- /.info-box -->
                                         </a>
                                     </h4>
                                 </div>
                                 <div id="hashtags_collapse" class="panel-collapse collapse in">
-                                    <div class="panel-body" style="margin-bottom:0px;">
+                                    <div class="panel-body" style="margin-bottom:0px;display:none">
                                         <div class="box-body">
                                             <div class="row">
                                             </div><!-- /.row -->
@@ -224,7 +212,7 @@
                                 </div>
                             </div>
 
-                            <div class="panel panel-default" >
+                            <div class="panel panel-default" style="display:none">
                                 <div class="panel-heading" style="padding:0px;">
                                     <h4 class="panel-title">
                                         <a data-toggle="collapse" data-parent="#accordion" href="#mentions_collapse">
@@ -256,7 +244,7 @@
                                 </div>
                             </div>
 
-                            <div class="panel panel-default" >
+                            <div class="panel panel-default" style="display:none">
                                 <div class="panel-heading" style="padding:0px;">
                                     <h4 class="panel-title">
                                         <a data-toggle="collapse" data-parent="#accordion" href="#direct_messages_collapse">

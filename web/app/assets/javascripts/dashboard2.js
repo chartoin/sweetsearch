@@ -473,12 +473,14 @@ function postToSolr(search_query) {
         var whos_data_array = data.whos;
         var whats_data_array = data.whats;
         var places_data_array = data.places;
+        var hashtag_counter = 0, popularity_counter = 0;
 
         if(whos_data_array.length > 0) {
 
             for (var i = 0; i < whos_data_array.length; i++) {
                 var obj = whos_data_array[i];
                 if(obj != null && obj.hasOwnProperty("id")) {
+                    popularity_counter += obj.count;
                     $('.user_tweet_content').find('.products-list').append(
                         "<li class ='item'>" +
                         "<div class='product-img'>" +
@@ -494,11 +496,16 @@ function postToSolr(search_query) {
                         "<span class='product-description person-tweet-text'>" +
                         obj.tweet +
                         "</span>" +
+                        "<span class='label label-info'>" +
+                        obj.name +
+                        "</span>"+
                         "</div>" +
                         "</li>"
                     );
                 }
             }
+
+            $("#popularity_count").html(popularity_counter/1000);
         }
 
         else {
@@ -511,6 +518,7 @@ function postToSolr(search_query) {
                 "</div>" +
                 "</li>"
             );
+            $("#popularity_count").html("");
         }
 
         if(whats_data_array.length > 0) {
@@ -518,6 +526,7 @@ function postToSolr(search_query) {
             for (var i = 0; i < whats_data_array.length; i++) {
                 var obj = whats_data_array[i];
                 if(obj != null && obj.hasOwnProperty("id")) {
+                    hashtag_counter += obj.count;
                     $('.topic_tweet_content').find('.products-list').append(
                         "<li class ='item'>" +
                         "<div class='product-img'>" +
@@ -533,10 +542,15 @@ function postToSolr(search_query) {
                         "<span class='product-description person-tweet-text'>" +
                         obj.tweet +
                         "</span>" +
+                        "<span class='label label-info'>" +
+                        obj.topic +
+                        "</span>"+
                         "</div>" +
                         "</li>"
                     );
                 }
+
+                $("#hashtag_count").html(hashtag_counter);
             }
         }
 
@@ -550,6 +564,7 @@ function postToSolr(search_query) {
                 "</div>" +
                 "</li>"
             );
+            $("#hashtag_count").html(hashtag_counter);
         }
 
         if(places_data_array.length > 0) {
@@ -572,6 +587,8 @@ function postToSolr(search_query) {
                     });
                 }
             }
+
+            $('#world-map-markers').empty();
 
             $('#world-map-markers').vectorMap({
 
