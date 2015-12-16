@@ -151,74 +151,8 @@ $(function () {
    * ------------
    * Create a world map with markers
    */
-  $('#world-map-markers').vectorMap({
-    map: 'world_mill_en',
-    normalizeFunction: 'polynomial',
-    hoverOpacity: 0.7,
-    hoverColor: false,
-    backgroundColor: 'transparent',
-    regionStyle: {
-      initial: {
-        fill: 'rgba(210, 214, 222, 1)',
-        "fill-opacity": 1,
-        stroke: 'none',
-        "stroke-width": 0,
-        "stroke-opacity": 1
-      },
-      hover: {
-        "fill-opacity": 0.7,
-        cursor: 'pointer'
-      },
-      selected: {
-        fill: 'yellow'
-      },
-      selectedHover: {
-      }
-    },
-    markerStyle: {
-      initial: {
-        fill: '#00a65a',
-        stroke: '#111'
-      }
-    },
-    markers: [
-      {latLng: [41.90, 12.45], name: 'OneForAll'},
-      {latLng: [43.73, 7.41], name: '#NommeSuisUnion'},
-      {latLng: [43.93, 12.46], name: 'Stay Strong'},
-      {latLng: [47.14, 9.52], name: 'Places safe?'},
-      {latLng: [49.11, 11.06], name: 'help Needed'},
-      {latLng: [17.3, -62.73], name: 'We shall prevail PorteOeuvrte'},
-      {latLng: [42.90, 12.45], name: 'Vatican City is closed'},
-      {latLng: [44.73, 6.41], name: ' Sending thoughts and prayers to those in Paris #PrayForParis!'},
-      {latLng: [-0.52, 134.93], name: 'We are United!'},
-      {latLng: [43.93, 12.46], name: 'PorteOeuvrte'},
-      {latLng: [47.14, 9.52], name: 'Hospital Info:-'},
-      {latLng: [54.05, 14.75], name: 'We are strong!'},
-      {latLng: [49.16, 24.23], name: 'Missing People'},
-      {latLng: [42.16, 10.55], name: 'EnaureTe Maud'},
-      {latLng: [49.11, 16.85], name: 'Terror in Paris'},
-      {latLng: [17.3, -62.73], name: 'Go into the night'},
-      {latLng: [3.2, 73.22], name: 'Relief Materials?'},
-      {latLng: [8.2, 79.22], name: 'Indians for Paris'},
-      {latLng: [35.88, 14.5], name: 'At a stadium? #Paris'},
-      {latLng: [-4.61, 55.45], name: 'Helping Hands'},
-      {latLng: [7.35, 134.46], name: 'Angered at Paris Attacks'},
-      {latLng: [42.5, 1.51], name: 'Terrorism is blatant'},
-      {latLng: [-20.01, 134.98], name: 'Australia Feels.'},
-      {latLng: [1.3, 103.8], name: 'We live to fight another day'},
-      {latLng: [35.3, -100.38], name: 'Washington sends love. #SaveParis'},
-      {latLng: [32.3, -90.38], name: 'Be safe #with you'},
-      {latLng: [39.3, -120.38], name: '#JeSuisHuman'},
-      {latLng: [5.3, -79.43], name: 'Whatever happened to the world?'},
-      {latLng: [1.3, -52.38], name: 'Prayers and more prayers'},
-      {latLng: [15.3, -20.38], name: 'Disgusted #Paris'},
-      {latLng: [-20.2, 57.5], name: 'Mauritius'},
-      {latLng: [26.02, 50.55], name: 'Feeling disheartened'},
-      {latLng: [0.33, 6.73], name: 'We are made of sterner stuff'}
-    ]
-  });
 
-  /* SPARKLINE CHARTS
+    /* SPARKLINE CHARTS
    * ----------------
    * Create a inline charts with spark line
    */
@@ -398,15 +332,15 @@ $(function () {
 
         postToSolr(search_term);
 
-        });
+    });
 
-        $('.language_chooser').find('.active a').click(function() {
-            //getLangDateInfo();
-        });
+    $('.language_chooser').find('.active a').click(function() {
+        //getLangDateInfo();
+    });
 
-        $('.daterangepicker').find('.applyBtn').click(function() {
-            getLangDateInfo();
-        });
+    $('.daterangepicker').find('.applyBtn').click(function() {
+        getLangDateInfo();
+    });
 
     // Modal - Pop-Over for User
 
@@ -446,7 +380,9 @@ function getLangDateInfo() {
 
     var search_term = $('#search-btn-val').val();
 
-    var search_string = search_term + '&method=facets'+'&date_from='+start_date + '&date_to='+end_date +'&language='+language;
+    var search_string = search_term +'&date_from='+start_date + '&date_to='+end_date +'&language='+language;
+
+    console.log(search_string);
 
     //postToSolr(search_string);
 }
@@ -480,29 +416,32 @@ function postToSolr(search_query) {
 
         var whos_data_array = data.whos;
         var whats_data_array = data.whats;
+        var places_data_array = data.places;
 
-        if (whos_data_array.length > 0) {
+        if(whos_data_array.length > 0) {
 
             for (var i = 0; i < whos_data_array.length; i++) {
                 var obj = whos_data_array[i];
-                $('.user_tweet_content').find('.products-list').append(
-                    "<li class ='item'>" +
-                    "<div class='product-img'>" +
-                    "<img src=' " + obj.image + "'/>" +
-                    "</div>" +
-                    "<div class='product-info'>" +
-                    "<a href='#' class='product-title person-title' data-screen_name=\""+obj.screen_name+"\">" +
-                    obj.name +
-                    "<span class='label label-success pull-right'>" +
-                    obj.count +
-                    "</span>" +
-                    "</a>" +
-                    "<span class='product-description person-tweet-text'>" +
-                    obj.tweet +
-                    "</span>" +
-                    "</div>" +
-                    "</li>"
-                );
+                if(obj != null && obj.hasOwnProperty("id")) {
+                    $('.user_tweet_content').find('.products-list').append(
+                        "<li class ='item'>" +
+                        "<div class='product-img'>" +
+                        "<img src=' " + obj.image + "'/>" +
+                        "</div>" +
+                        "<div class='product-info'>" +
+                        "<a href='#' class='product-title person-title' data-screen_name=\"" + obj.screen_name + "\">" +
+                        obj.name +
+                        "<span class='label label-success pull-right'>" +
+                        obj.count +
+                        "</span>" +
+                        "</a>" +
+                        "<span class='product-description person-tweet-text'>" +
+                        obj.tweet +
+                        "</span>" +
+                        "</div>" +
+                        "</li>"
+                    );
+                }
             }
         }
 
@@ -518,28 +457,30 @@ function postToSolr(search_query) {
             );
         }
 
-        if (whats_data_array.length > 0) {
+        if(whats_data_array.length > 0) {
 
             for (var i = 0; i < whats_data_array.length; i++) {
                 var obj = whats_data_array[i];
-                $('.topic_tweet_content').find('.products-list').append(
-                    "<li class ='item'>" +
-                    "<div class='product-img'>" +
-                    "<img src=' " + obj.image + "'/>" +
-                    "</div>" +
-                    "<div class='product-info'>" +
-                    "<a href='#' class='product-title topic-title' data-topics=\""+obj.topic+"\">" +
-                    obj.topic +
-                    "<span class='label label-success pull-right'>" +
-                    obj.count +
-                    "</span>" +
-                    "</a>" +
-                    "<span class='product-description person-tweet-text'>" +
-                    obj.tweet +
-                    "</span>" +
-                    "</div>" +
-                    "</li>"
-                );
+                if(obj != null && obj.hasOwnProperty("id")) {
+                    $('.topic_tweet_content').find('.products-list').append(
+                        "<li class ='item'>" +
+                        "<div class='product-img'>" +
+                        "<img src=' " + obj.image + "'/>" +
+                        "</div>" +
+                        "<div class='product-info'>" +
+                        "<a href='#' class='product-title topic-title' data-topics=\"" + obj.topic + "\">" +
+                        obj.topic +
+                        "<span class='label label-success pull-right'>" +
+                        obj.count +
+                        "</span>" +
+                        "</a>" +
+                        "<span class='product-description person-tweet-text'>" +
+                        obj.tweet +
+                        "</span>" +
+                        "</div>" +
+                        "</li>"
+                    );
+                }
             }
         }
 
@@ -555,8 +496,67 @@ function postToSolr(search_query) {
             );
         }
 
-        attachEvents();
+        if(places_data_array.length > 0) {
 
+            var locations = [];
+
+            for (var i = 0; i < places_data_array.length; i++) {
+                var obj = places_data_array[i];
+                if(obj != null
+                    && obj.hasOwnProperty("lat_long") && obj.lat_long != null
+                    && obj.lat_long.hasOwnProperty("lat") && obj.lat_long.lat != null
+                    && obj.lat_long.hasOwnProperty("lng") && obj.lat_long.lng != null) {
+
+                    locations.push({
+                        latLng: [
+                            obj.lat_long.lat,
+                            obj.lat_long.lng
+                        ],
+                        name: obj.location
+                    });
+                }
+            }
+
+            console.log(locations)
+
+            $('#world-map-markers').vectorMap({
+
+                map: 'world_mill_en',
+                normalizeFunction: 'polynomial',
+                hoverOpacity: 0.7,
+                hoverColor: false,
+                backgroundColor: 'transparent',
+                regionStyle: {
+                    initial: {
+                        fill: 'rgba(210, 214, 222, 1)',
+                        "fill-opacity": 1,
+                        stroke: 'none',
+                        "stroke-width": 0,
+                        "stroke-opacity": 1
+                    },
+                    hover: {
+                        "fill-opacity": 0.7,
+                        cursor: 'pointer'
+                    },
+                    selected: {
+                        fill: 'yellow'
+                    },
+                    selectedHover: {}
+                },
+                markerStyle: {
+                    initial: {
+                        fill: '#00a65a',
+                        stroke: '#111'
+                    }
+                },
+                markers: locations,
+                onMarkerClick: function(events, index) {
+                    postToSolrForMapModal(locations[index].name)
+                }
+            });
+
+            attachEvents();
+        }
     });
 }
 
@@ -586,7 +586,7 @@ function postToSolrForUserModal(search_query) {
                     "<span class='label label-success pull-right'>" +
                     "</span>" +
                     "</a>" +
-                    "<span class='product-description person-tweet-text'>" +
+                    "<span class='product-description person-tweet-text' style='white-space:normal'>" +
                     obj.tweet +
                     "</span>" +
                     "</div>" +
@@ -640,7 +640,7 @@ function postToSolrForTopicsModal(search_query) {
                     "<span class='label label-success pull-right'>" +
                     "</span>" +
                     "</a>" +
-                    "<span class='product-description person-tweet-text'>" +
+                    "<span class='product-description person-tweet-text' style='white-space:normal'>" +
                     obj.tweet +
                     "</span>" +
                     "</div>" +
@@ -660,6 +660,58 @@ function postToSolrForTopicsModal(search_query) {
                 "</li>"
             );
         }
+
+    });
+}
+
+function postToSolrForMapModal(search_query) {
+
+    $.post("/welcome/search?query="+search_query, function (data) {
+        console.log(data);
+
+        var whos_data_array = data.tweets;
+
+        $('.map-modal-tweet-content').find('.products-list').empty();
+
+        $('#mapModalLabel').html("Tweets from "+search_query);
+
+        if (whos_data_array.length > 0) {
+
+            for (var i = 0; i < whos_data_array.length; i++) {
+                var obj = whos_data_array[i];
+                $('.map-modal-tweet-content').find('.products-list').append(
+                    "<li class ='item'>" +
+                    "<div class='product-img'>" +
+                    "<img src=' " + obj.image + "'/>" +
+                    "</div>" +
+                    "<div class='product-info'>" +
+                    "<a href='#' class='product-title person-title'>" +
+                    obj.name +
+                    "<span class='label label-success pull-right'>" +
+                    "</span>" +
+                    "</a>" +
+                    "<span class='product-description person-tweet-text' style='white-space:normal'>" +
+                    obj.tweet +
+                    "</span>" +
+                    "</div>" +
+                    "</li>"
+                );
+            }
+        }
+
+        else {
+            $('.map_tweet_content').find('.products-list').append(
+                "<li class ='item'>" +
+                "<div>" +
+                "<span class='product-description person-tweet-text text-center'>" +
+                "No tweets found." +
+                "</span>" +
+                "</div>" +
+                "</li>"
+            );
+        }
+
+
 
     });
 }
