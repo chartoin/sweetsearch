@@ -35,7 +35,10 @@
     <field name="image" type="string" indexed="true" stored="true" required="false" multiValued="false" /> 
     <field name="topics" type="string" indexed="true" stored="true" required="false" multiValued="true" />
     <field name="user_location" type="string" indexed="true" stored="true" required="false" multiValued="false" />
-
+    <field name="PERSON" type="string" indexed="true" stored="true" multiValued="true" required="false"/>
+    <field name="LOCATION" type="string" indexed="true" stored="true" multiValued="true" required="false"/>
+    <field name="ORGANIZATION" type="string" indexed="true" stored="true" multiValued="true" required="false" />
+    <field name="O" type="string" indexed="true" stored="true" multiValued="true" required="false" />
    <!-- <field name="content" type="text_general" indexed="false" stored="true" multiValued="true"/> -->
    <!-- <field name="text" type="text_general" indexed="true" stored="false" multiValued="true"/> -->
    <!--<field name="language" type="string" indexed="true" stored="true" required="false"/> -->
