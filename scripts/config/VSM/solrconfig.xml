@@ -319,6 +319,15 @@
     -->
 
   <!-- The default high-performance update handler -->
+  <updateRequestProcessorChain name="mychain" >
+	  <processor class="com.searchbox.NerProcessorFactory" >
+		  <lst name="queryFields">
+			  <str name="queryField">text</str>
+		  </lst>
+	  </processor>
+	  <processor class="solr.LogUpdateProcessorFactory" />
+	  <processor class="solr.RunUpdateProcessorFactory" />
+  </updateRequestProcessorChain>
   <updateHandler class="solr.DirectUpdateHandler2">
 
     <!-- Enables a transaction log, used for real-time get, durability, and
@@ -777,7 +786,11 @@
        not be initialized until the first request that uses it.
 
     -->
-
+<requestHandler name="/update" class="solr.UpdateRequestHandler">
+	<lst name="defaults">
+		<str name="update.chain">mychain</str>
+	</lst>
+</requestHandler> 
   <requestHandler name="/dataimport" class="solr.DataImportHandler">
     <lst name="defaults">
       <str name="config">solr-data-config.xml</str>
