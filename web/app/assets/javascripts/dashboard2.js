@@ -377,7 +377,7 @@ $(function () {
             var search_string = "text:" + search_term;
 
             if (selected.length > 0) {
-                search_string += "AND  (";
+                search_string += " AND  (";
             }
 
             $.each(selected, function (index, value) {
@@ -469,6 +469,7 @@ function postToSolr(search_query) {
 
         $('.user_tweet_content').find('.products-list').empty();
         $('.topic_tweet_content').find('.products-list').empty();
+        $('#world-map-markers').empty();
 
         var whos_data_array = data.whos;
         var whats_data_array = data.whats;
@@ -505,7 +506,7 @@ function postToSolr(search_query) {
                 }
             }
 
-            $("#popularity_count").html(popularity_counter/1000);
+            $("#popularity_count").html((popularity_counter/600).toPrecision(2));
         }
 
         else {
@@ -525,8 +526,15 @@ function postToSolr(search_query) {
 
             for (var i = 0; i < whats_data_array.length; i++) {
                 var obj = whats_data_array[i];
+                var topics_array;
+                var topic_span_string = "";
                 if(obj != null && obj.hasOwnProperty("id")) {
                     hashtag_counter += obj.count;
+                    topics_array = obj.tags;
+                    $.each(topics_array, function (index, value) {
+                        topic_span_string += "<span class='label label-info'>"+value+"</span>&nbsp;";
+                    });
+
                     $('.topic_tweet_content').find('.products-list').append(
                         "<li class ='item'>" +
                         "<div class='product-img'>" +
@@ -542,9 +550,7 @@ function postToSolr(search_query) {
                         "<span class='product-description person-tweet-text'>" +
                         obj.tweet +
                         "</span>" +
-                        "<span class='label label-info'>" +
-                        obj.topic +
-                        "</span>"+
+                        topic_span_string +
                         "</div>" +
                         "</li>"
                     );
@@ -587,8 +593,6 @@ function postToSolr(search_query) {
                     });
                 }
             }
-
-            $('#world-map-markers').empty();
 
             $('#world-map-markers').vectorMap({
 
